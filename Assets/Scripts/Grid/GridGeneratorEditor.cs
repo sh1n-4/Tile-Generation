@@ -25,6 +25,10 @@ public class GridGeneratorEditor : Editor
         {
             gridGenerator.AssignMaterials();
         }
+        if (GUILayout.Button("Assign Tile Script"))
+        {
+            gridGenerator.AssignTileScript();
+        }
     }
 
     [MenuItem("Tools/Generate Grid")]

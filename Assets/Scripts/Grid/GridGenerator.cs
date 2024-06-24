@@ -8,7 +8,7 @@ public class GridGenerator : MonoBehaviour
     public int width, height;
     public GameObject tilePrefab;
     //test
-    public Material m;
+    public Material material;
 
     // Start is called before the first frame update
     void Start()
@@ -58,10 +58,20 @@ public class GridGenerator : MonoBehaviour
     {
         GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
         //Material material = Resources.Load<Material>("Tile");
-        Material material = m;
+        Material m = material;
         foreach(GameObject tile in tiles)
         {
-            tile.GetComponent<Renderer>().material = material;
+            tile.GetComponent<Renderer>().material = m;
+        }
+    }
+
+    public void AssignTileScript()
+    {
+        GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+        
+        foreach (GameObject tile in tiles)
+        {
+            tile.AddComponent<Tile>();
         }
     }
 }
