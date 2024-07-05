@@ -5,10 +5,10 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
 
-    public bool current;
-    public bool target;
-    public bool selectable;
-    public bool isWalkable;
+    public bool current = false;
+    public bool target = false;
+    public bool selectable = false;
+    public bool isWalkable = true;
 
 
     // variables needed for BFS
@@ -17,12 +17,6 @@ public class Tile : MonoBehaviour
     public int distance = 0;
 
     public List<Tile> adjacencyList = new List<Tile>();
-
-    void Start()
-    {
-        
-    }
-
    
     void Update()
     {
@@ -75,9 +69,14 @@ public class Tile : MonoBehaviour
             if(tile != null && tile.isWalkable)
             {
                 RaycastHit hit;
-                if(Physics.Raycast(tile.transform.position, Vector3.up, out hit, 1))
+                // Code from the class recording: Physics.Raycast(tile.transform.position, Vector3.down, out hit, 1
+                // The code above for some reason has raycast issues and wont detect surrounding tiles
+                if (!Physics.Raycast(tile.transform.position, Vector3.up, out hit, 1))
                 {
                     adjacencyList.Add(tile);
+                } else
+                {
+                    Debug.Log("No hit detected from: " + tile.transform.position + " in the down direction.");
                 }
             }
         }

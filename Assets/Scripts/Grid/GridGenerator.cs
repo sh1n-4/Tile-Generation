@@ -35,7 +35,7 @@ public class GridGenerator : MonoBehaviour
             for(int y = 0; y < height; y++)
             {
                 //calc the pos for each cube
-                Vector3 position = new Vector3(x, 0, y); //z=y bcuz y=y is vertical
+                Vector3 position = new Vector3(x, 0.1f, y); //z=y bcuz y=y is vertical
                 //Instantiate at calc pos
                 GameObject newTile = Instantiate(tilePrefab, position, Quaternion.identity);
                 newTile.transform.parent = transform;
